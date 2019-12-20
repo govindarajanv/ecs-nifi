@@ -1,14 +1,14 @@
-### HA Kafka cluster on ECS
+### HA Nifi cluster on ECS
 ---  
 
 
 ###### -- Three node kafka cluster which includes HA zookeeper
-###### -- EFS volumes mounted and used by both Kafka & Zookeeper
-###### -- Scalable - Easy horizontal scaling for Kafka nodes
+###### -- EFS volumes mounted and used by both Nifi & Zookeeper
+###### -- Scalable - Easy horizontal scaling for Nifi nodes
 
 <br />
 
-![alt text](https://github.com/GloballogicPractices/ECS-Kafka/blob/master/images/kafka.png)
+![alt text](https://github.com/GloballogicPractices/ECS-Nifi/blob/master/images/kafka.png)
 
 <br />
 =======
@@ -18,14 +18,14 @@
 
 ##### This repository
 - Terraform modules and code to deploy a highly available Ka cluster in ECS
-- Ansible Integration to demonstrate concepts for deploying Kafka and Cassandra services
+- Ansible Integration to demonstrate concepts for deploying Nifi and Cassandra services
 - A python utility that manages deployement on ECS rather than relying on Ansible's ECS module.
   -  Lack of ability to deploy a service across multiple cluster led to a custom utility
 - Also demonstrate deploy and destroy time provisioners in Terraform
 - Orchestration of ECS tasks using ansible where statefulsets are not available. 
 - Demonstrate use of Cloudwatch-logs. A log group and stream is setup for log forwarding and aws logging driver is used.
 - Demonstrate cloud-init with Terraform
-- Deployment of EFS for Kafka/Zookeeper
+- Deployment of EFS for Nifi/Zookeeper
 
 
 
@@ -41,7 +41,7 @@
 
 #### Deployment architecture
 ---
-![alt text](https://github.com/GloballogicPractices/ECS-Kafka/blob/master/images/kafka-on-ecs.png)
+![alt text](https://github.com/GloballogicPractices/ECS-Nifi/blob/master/images/kafka-on-ecs.png)
 
 
 <br />
@@ -53,7 +53,7 @@ NOTE: Kong can be deployed as a proxy server using code from https://github.com/
 ---
 #### What is deployed?
 1. VPC - Three private subnets and three public subnets
-2. One ECS Cluster ( Kafka private subnets respectively)
+2. One ECS Cluster ( Nifi private subnets respectively)
 3. A bastion node.
 4. AWS Log group and log stream
 5. EBS Volumes of 50G attached to each Cassandra node using cloud-init
@@ -133,7 +133,7 @@ ansible_user      = "ansible"
 // Applications will be accessible from these IPs only
 control_cidr = "52.45.0.0/16,138.5.0.0/16"
 
-# ECS Kafka cluster
+# ECS Nifi cluster
 kafka_asg_max_size = 3
 kafka_asg_min_size = 3
 kafka_asg_desired_size = 3
@@ -144,7 +144,7 @@ private_sub_control_cidr ="10.2.0.0/16"
 
 
 
-// Kafka EFS
+// Nifi EFS
 // Zookeeper config is stored in a sub directorty
 // under kafka directory
 efs_kafka_data_dir  = "/kafka-data"
