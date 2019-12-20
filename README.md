@@ -1,3 +1,4 @@
+Trying to make changes to GloballogicPractices/ECS-Kafka to use the same logic for implementing Nifi with ZK
 ### HA Nifi cluster on ECS
 ---  
 
